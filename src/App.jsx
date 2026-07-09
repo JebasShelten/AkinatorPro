@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import CategorySelector from "./components/CategorySelector";
+import GameBoard from "./components/GameBoard";
 // import GameBoard from "./components/GameBoard"; // We will import this in the next phase
 
 export default function App() {
@@ -38,30 +39,17 @@ export default function App() {
           )}
 
           {gameState === "playing" && (
-            <motion.div
-              key="playing"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-2xl mx-auto"
-            >
-              {/* Temporary Placeholder until GameBoard is built */}
-              <div className="liquid-glass p-10 rounded-3xl text-center w-full">
-                <h2 className="text-2xl md:text-3xl text-emerald-100 mb-6">
-                  Category Ready: <br/>
-                  <span className="font-bold text-white mt-2 inline-block">{selectedCategory}</span>
-                </h2>
-                <div className="animate-pulse w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full mx-auto mb-8"></div>
-                <button 
-                  onClick={resetGame}
-                  className="bg-emerald-500/20 hover:bg-emerald-500/40 border border-emerald-500/50 text-emerald-300 rounded-full px-8 py-3 transition-colors font-medium"
-                >
-                  Cancel & Go Back
-                </button>
-              </div>
-            </motion.div>
-          )}
+  <motion.div
+    key="playing"
+    initial={{ opacity: 0, scale: 0.95 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 1.05 }}
+    transition={{ duration: 0.3, ease: "easeInOut" }}
+    className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-2xl mx-auto p-4"
+  >
+    <GameBoard category={selectedCategory} onReset={resetGame} />
+  </motion.div>
+)}
         </AnimatePresence>
       </main>
     </div>
